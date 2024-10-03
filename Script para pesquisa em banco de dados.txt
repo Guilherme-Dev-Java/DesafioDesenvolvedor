@@ -1,0 +1,12 @@
+SELECT 
+    c.id_cliente AS codigo_cliente,
+    c.razao_social,
+    t.numero_telefone
+FROM 
+    clientes c
+JOIN 
+    estados e ON c.estado_id = e.id_estado
+JOIN 
+    telefones t ON c.id_cliente = t.id_cliente
+WHERE 
+    e.sigla_estado = 'SP';

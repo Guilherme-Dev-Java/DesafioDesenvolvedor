@@ -1,0 +1,27 @@
+-- Tabela de Estados
+CREATE TABLE estados (
+    id_estado SERIAL PRIMARY KEY,
+    sigla_estado CHAR(2) NOT NULL UNIQUE,
+    nome_estado VARCHAR(100) NOT NULL
+);
+
+-- Tabela de Tipos de Telefones
+CREATE TABLE tipo_telefones (
+    id_tipo_telefone SERIAL PRIMARY KEY,
+    descricao_tipo VARCHAR(50) NOT NULL
+);
+
+-- Tabela de Clientes
+CREATE TABLE clientes (
+    id_cliente SERIAL PRIMARY KEY,
+    razao_social VARCHAR(255) NOT NULL,
+    estado_id INT REFERENCES estados(id_estado)
+);
+
+-- Tabela de Telefones
+CREATE TABLE telefones (
+    id_telefone SERIAL PRIMARY KEY,
+    numero_telefone VARCHAR(20) NOT NULL,
+    id_cliente INT REFERENCES clientes(id_cliente),
+    id_tipo_telefone INT REFERENCES tipo_telefones(id_tipo_telefone)
+);
